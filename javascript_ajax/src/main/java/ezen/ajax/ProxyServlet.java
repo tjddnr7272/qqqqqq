@@ -31,7 +31,7 @@ public class ProxyServlet extends HttpServlet {
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		// 서블릿에서 Open API 사용하는 부분임
+		// 서블릿에서 Open API 사용하는 부분임   ///asdasdasd
 //		URL url = new URL("https://jsonplaceholder.typicode.com/albums");
 		URL url = new URL("https://yts.torrentbay.to/api/v2/list_movies.json");
 		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
