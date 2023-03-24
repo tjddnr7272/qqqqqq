@@ -39,8 +39,8 @@ public class ProxyServlet extends HttpServlet {
 		connection.setConnectTimeout(5000);
 		
 		//서블릿에서 Open API로부터의 응답을 처리하는 부분
-		BufferedReader in = null;
-		StringBuilder sb = new StringBuilder();		
+			BufferedReader in = null;
+			StringBuilder sb = new StringBuilder();		
 		int status = connection.getResponseCode();
 		String text = null;
 		if(status >= 300) {
