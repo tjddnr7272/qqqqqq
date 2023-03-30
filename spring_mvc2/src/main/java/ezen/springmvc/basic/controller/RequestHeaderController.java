@@ -20,7 +20,7 @@ public class RequestHeaderController {
 			              HttpMethod httpMethod,
 			              @RequestHeader MultiValueMap<String, String> headerMap, 
 			              @RequestHeader("host") String host,
-			              @CookieValue(value = "myCookie", required = false) String myCookie) {
+			              @CookieValue(value = "myCookie", required = false, defaultValue = "bangry") String myCookie) {
 		log.info("request={}", request);
 		log.info("response={}", response);
 		log.info("httpMethod={}", httpMethod);

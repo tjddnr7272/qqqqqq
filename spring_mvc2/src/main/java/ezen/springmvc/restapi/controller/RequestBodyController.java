@@ -47,7 +47,7 @@ public class RequestBodyController {
 	public ResponseEntity<String> processRequestBody(RequestEntity<String> httpEntity){
 		String message = httpEntity.getBody();
 		log.info("요청메시지 바디 : {}", message);
-		return new ResponseEntity<String>("반갑습니다. 클라이언트...", HttpStatus.OK);//201
+		return new ResponseEntity<String>("반갑습니다. 클라이언트...", HttpStatus.OK);//200
 	}
 	
 	@PostMapping("/request-body3")

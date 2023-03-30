@@ -8,17 +8,19 @@ import lombok.Setter;
 import lombok.ToString;
 
 
-@NoArgsConstructor
+
 //@AllArgsConstructor
 //@Getter
 //@Setter
 //@ToString
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Member {
 	private String id;
 	private String password;
 	private String name;
+	//private String email;
 	private int age;
 }
 

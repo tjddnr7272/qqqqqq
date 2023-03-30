@@ -57,7 +57,7 @@ public class RequestMappingController {
 	 * @PathVariable("userId") String userId -> @PathVariable userId
 	 */
 	@GetMapping("/mapping/{userId}")
-	// public String mappingPath(@PathVariable("userId") String userid) {
+	// public String mappingPath(@PathVariable("userId") String id) {
 	public String mappingPath(@PathVariable String userId) {
 		log.info("mappingPath userId={}", userId);
 		return "ok";
