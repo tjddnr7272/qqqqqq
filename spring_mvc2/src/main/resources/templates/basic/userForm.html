@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>유효성 검증 예제</title>
+</head>
+<body>
+    <h1>회원 가입</h1>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <label for="name">이름:</label>
+        <input type="text" id="name" th:field="*{name}">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
+        <br><br>
+
+        <label for="email">이메일:</label>
+        <input type="email" id="email" th:field="*{email}">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red;"></span>
+        <br><br>
+
+        <button type="submit">가입</button>
+    </form>
+</body>
+</html>

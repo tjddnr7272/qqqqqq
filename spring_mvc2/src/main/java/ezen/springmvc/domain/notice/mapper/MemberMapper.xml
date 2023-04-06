@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="ezen.springmvc.domain.member.mapper.MemberMapper">
+
+	<!-- findAll 메서드에 대한 SQL 쿼리 -->
+	<select id="findAll" resultType="ezen.springmvc.thymeleaf.controller.Notice">
+  		SELECT id, title, content, notice_date, field, member_id, created_date FROM notice
+	</select>
+
+	<!-- Notice 테이블에 데이터 삽입 -->
+	<insert id="insertNotice" parameterType="ezen.springmvc.thymeleaf.controller.Notice">
+		INSERT INTO notice (id, title, content, notice_date, field, member_id, created_date)
+		VALUES (
+			#{id},
+			#{title},
+			#{content},
+			#{noticeDate},
+			#{field},
+			#{member.id},
+			#{createdDate}
+		)
+	</insert>
+	
+</mapper>

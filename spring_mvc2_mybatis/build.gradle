@@ -24,7 +24,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	//implementation 'javax.servlet:jstl'
     //implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // 타임리프 jsp 떄문에 일단 주석
+    //implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
@@ -40,7 +41,19 @@ dependencies {
         //유효성 검사
         implementation 'javax.validation:validation-api:2.0.1.Final'
          implementation 'org.springframework.boot:spring-boot-starter-validation'
+         //롬복
+         compileOnly 'org.projectlombok:lombok:1.18.20'
+         annotationProcessor 'org.projectlombok:lombok:1.18.20'
+         //RequestMapping ( jsp때문에 주석)
+             //implementation 'org.springframework:spring-webmvc:5.3.12'
          
+         //오라클 최시버젼
+         implementation 'com.oracle.database.jdbc:ojdbc10:19.12.0.0'
+         
+         //
+         
+         implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+implementation 'javax.servlet:jstl'
 }
 
 tasks.named('test') {

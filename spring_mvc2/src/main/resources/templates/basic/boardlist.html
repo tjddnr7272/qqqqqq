@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공지사항 리스트</title>
+  <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .m{margin-top: 4%;}
+  </style>
+
+</head>
+<body>
+  <div class="container-lg m">
+  
+    <h5 class="p-3 mb-2 bg-primary text-white rounded mb-4">공지사항</h5>
+
+<div class="d-flex justify-content-end">
+  <div class="form-group me-2">
+    <select class="form-select" id="exampleSelect1">
+           <form th:action="@{/board/list}"   method="get"><option>제목</option>
+           <option>내용</option>
+           <option>작성자</option>
+    </select>
+  </div>
+
+
+  <form class="d-flex">
+  <input class="form-control me-sm-2" name="searchKeyword" type="search" placeholder="Search">
+  <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+</form>
+  
+</div>
+
+  
+  <div class="mb-3 ms-2" style="font-size: 1rem;">
+  
+  <!-- 전체 <b class="text-primary" th:text="${noticePage.totalElements}"></b>건의 게시물이 있습니다 -->
+  
+  <!-- noticePage.number 값에 1을 더한 결과를 HTML 태그인 b 태그의 텍스트 값으로 설정,
+  noticePage.number에 1을 더한 이유는 noticePage.number가 0부터 시작하지만, 사용자가 보는 페이지 번호는 1부터 시작하기 때문 -->
+  <!-- (<b class="text-primary" th:text="${noticePage.number + 1}"></b>/ -->
+ 
+ <!-- 이 코드는 전체 페이지 수를 나타냄... noticePage.totalPages 값은 해당 페이지에서 보여주고자 하는 게시물의
+  수와 총 게시물 수를 이용하여 계산됨. 이 값은 위 코드에서 현재 페이지 번호와 함께 출력됨. -->
+ <!-- <b class="text-primary" th:text="${noticePage.totalPages}"></b>) --> 
+ 
+ 
+</div>
+
+
+  <table class="table table-hover text-center">
+    <thead>
+      <tr class="table-active">
+        <th scope="col-1">번호</th>
+        <th scope="col-5">제목</th>
+        <th scope="col-2">작성자</th>
+        <th scope="col-3">작성날짜</th>
+        <th scope="col-1">조회수</th>
+      </tr>
+    </thead>
+     <tbody>
+     <!-- list에 있는 모든 요소에 대해 반복문을 실행하며, 요소의 값을 board 변수에 할당 -->
+    <tr th:each="board : ${list}">
+    
+     <!-- board 변수에서 id 값을 가져와 해당 셀의 텍스트로 출력 -->
+      <td th:text="${board.id}">공지사항 번호 입니다</td>
+      
+      <!-- board 변수에서 title 값을 가져와 해당 셀의 텍스트로 출력. -->
+                                     <!-- localhost/board/view?id=board.id(1부터~) -->
+      <td><a th:text="${board.title}" th:href ="@{/board/view(id=${board.id})}" >제목입니다</a></td>
+      
+            <td th:text="${board.email}">공지사항 작성 이메일 입니다</td>
+                  <td th:text="${#dates.format(board.createdDate, 'yyyy-MM-dd ')}">날짜 입니다</td>
+             <td th:text="${board.viewCount}">조회수 입니다</td>
+            
+      
+      
+   
+    </tr>
+  </tbody>
+  </table>
+  
+
+  <div>
+    <ul class="pagination pagination-sm d-flex justify-content-center">
+    
+<!-- 페이지 처리를 위한 코드 -->
+<div class="pagination">
+    <ul class="pagination">
+        <!-- 이전 페이지로 이동하는 링크 -->
+        <li>
+            <a th:href="@{/board/list(page=${nowPage == 1 ? 0 : nowPage - 2}, searchKeyword=${searchKeyword})}">&lt;&lt;</a>
+        </li>
+
+        <!-- 페이지 번호 생성 -->
+        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+            <li th:if="${page != nowPage}">
+                <a th:href="@{/board/list(page=${page - 1}, searchKeyword=${searchKeyword})}" th:text="${page}"></a>
+            </li>
+            <li th:if="${page == nowPage}" class="active">
+                <span th:text="${page}"></span>
+            </li>
+        </th:block>
+
+
+        <!-- 다음 페이지로 이동하는 링크 -->
+        <li>
+            <a th:href="@{/board/list(page=${endPage < list.totalPages ? endPage : (list.totalPages - 1)}, searchKeyword=${searchKeyword})}">&gt;&gt;</a>
+        </li>
+    </ul>
+</div>
+
+</ul>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
